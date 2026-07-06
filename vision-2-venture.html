@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision2Venture Global Grant Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Plus Jakarta Sans Premium Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body, button, input, select, textarea, h1, h2, h3, h4, h5, h6, p, a, span, li, option {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleUp {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        .animate-scaleUp {
+            animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-[#0c2e20] flex flex-col selection:bg-[#cbf7db] selection:text-[#063b21]">
+
+    <!-- Top Banner (Partnership Details) -->
+    <div class="bg-[#055c34] text-[#d6fce4] py-3 px-4 text-center text-xs font-bold tracking-wider uppercase flex items-center justify-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[#3aff8a] animate-pulse"></span>
+        <span>Sponsored by California State Resilience Alliances</span>
+        <span>|</span>
+        <span>$27,000 Global Grassroots Fund Active</span>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-[#e1ebd5] px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4 shadow-sm">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('home')">
+            <div class="h-10 w-10 bg-gradient-to-tr from-[#055c34] to-[#10b981] rounded-xl flex items-center justify-center font-extrabold text-white shadow-md shadow-[#10b981]/20 text-lg">
+                V2V
+            </div>
+            <div>
+                <h1 class="text-xl font-extrabold tracking-tight text-[#063b21]">
+                    Vision2Venture
+                </h1>
+                <p class="text-[10px] text-[#055c34] font-bold tracking-widest uppercase">Global Grassroots Accelerator</p>
+            </div>
+        </div>
+
+        <!-- Tab Controls -->
+        <nav class="flex flex-wrap gap-1 bg-[#edf5e1]/60 p-1.5 rounded-xl border border-[#dce6ce]">
+            <button
+                id="btn-home"
+                onclick="switchTab('home')"
+                class="tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wide transition-all bg-[#055c34] text-white shadow-sm"
+            >
+                Mission and Overview
+            </button>
+            <button
+                id="btn-suggestions"
+                onclick="switchTab('suggestions')"
+                class="tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wide transition-all text-[#25523b] hover:bg-white/60 hover:text-[#063b21]"
+            >
+                Venture Suggestions
+            </button>
+            <button
+                id="btn-tiers"
+                onclick="switchTab('tiers')"
+                class="tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wide transition-all text-[#25523b] hover:bg-white/60 hover:text-[#063b21]"
+            >
+                Funding Structure
+            </button>
+        </nav>
+
+        <!-- Direct Instant Apply Trigger -->
+        <button
+            onclick="openApplyModal()"
+            class="px-6 py-2.5 rounded-xl bg-[#055c34] hover:bg-[#033b21] text-white text-xs font-extrabold tracking-wider uppercase transition-all shadow-md shadow-[#055c34]/15 hover:scale-[1.02]"
+        >
+            Apply Now
+        </button>
+    </header>
+
+    <main class="flex-1 max-w-6xl w-full mx-auto p-4 md:p-8 space-y-16">
+
+        <!-- TAB: HOME -->
+        <div id="tab-home" class="space-y-16 animate-fadeIn">
+            
+            <div class="relative overflow-hidden rounded-3xl border border-[#dbe6cf] bg-gradient-to-br from-white to-[#f4fbf1] p-8 md:p-16 text-center shadow-md">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#10b981]/5 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="relative z-10 max-w-3xl mx-auto space-y-6">
+                    <span class="inline-block text-[11px] font-extrabold px-3 py-1.5 rounded-full bg-[#f4faf2] border border-[#bce09f] text-[#055c34] uppercase tracking-wider">
+                        Partnering with US Resilience Models
+                    </span>
+                    
+                    <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-[#063b21] leading-tight">
+                        Funding Local Solutions <br/>
+                        <span class="bg-gradient-to-r from-[#055c34] to-[#10b981] bg-clip-text text-transparent">Where They Grow Best</span>
+                    </h2>
+                    
+                    <p class="text-[#325240] text-base leading-relaxed max-w-2xl mx-auto">
+                        Vision2Venture is a targeted micro-grant program designed to help local leaders pilot original business or community-focused ideas. Powered by sustainable funding, we award direct capital transfers to 45 chosen visionaries globally.
+                    </p>
+
+                    <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <button 
+                            onclick="openApplyModal()"
+                            class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-[#055c34] text-white font-bold hover:bg-[#033b21] hover:shadow-lg hover:shadow-[#055c34]/15 transition-all"
+                        >
+                            Submit 2-Minute Pitch
+                        </button>
+                        <button 
+                            onclick="switchTab('suggestions')"
+                            class="w-full sm:w-auto px-8 py-4 rounded-2xl border border-[#bce09f] bg-[#f4faf2]/50 text-[#055c34] font-bold hover:bg-[#f4faf2] transition-all"
+                        >
+                            Get Seed Ideas
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Metrics Dashboard Grid -->
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 pt-12 border-t border-[#dbe6cf]">
+                    <div class="p-6 rounded-2xl bg-white border border-[#edf3e6] text-center shadow-xs">
+                        <h3 class="text-4xl font-extrabold text-[#055c34]">$27,000</h3>
+                        <p class="text-xs text-[#527d66] font-bold mt-2 uppercase tracking-wide">Total Allocation Pool</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-white border border-[#edf3e6] text-center shadow-xs">
+                        <h3 class="text-4xl font-extrabold text-[#055c34]">45 Awards</h3>
+                        <p class="text-xs text-[#527d66] font-bold mt-2 uppercase tracking-wide">Grassroots Founders Funded</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-white border border-[#edf3e6] text-center shadow-xs">
+                        <h3 class="text-4xl font-extrabold text-[#055c34]">No Barriers</h3>
+                        <p class="text-xs text-[#527d66] font-bold mt-2 uppercase tracking-wide">Apply as Team or Solo</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Geographic Context Block -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2 text-[#055c34] text-sm font-bold tracking-widest uppercase">
+                        <span class="w-1.5 h-6 bg-[#055c34] rounded-full"></span>
+                        Local Communities, Global Resilience
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-[#063b21]">
+                        Supporting Grassroots Innovation Internationally
+                    </h3>
+                    <p class="text-[#325240] leading-relaxed">
+                        Our evaluation process assesses regional needs instead of limiting evaluations to individual country constraints. Whether you design off-grid learning solutions in the Caribbean Islands, solar water filtration in South Asia, or winter greenhouse insulation in Eastern Europe, we analyze viability based on resources available directly in your area.
+                    </p>
+                    <p class="text-[#325240] leading-relaxed">
+                        We prioritize solutions engineered from raw materials easily accessible to local workshops, family cooperatives, or community groups. No expensive or high-tech equipment is required, simply an honest and viable 2-minute pitch detailing your project setup.
+                    </p>
+                </div>
+
+                <!-- Video Guidelines Preview -->
+                <div class="bg-white p-8 rounded-3xl border border-[#dbe6cf] space-y-6 shadow-xs">
+                    <h4 class="text-lg font-extrabold text-[#063b21] flex items-center justify-between">
+                        <span>Standard 2-Minute Pitch Guidelines</span>
+                        <span class="text-xs bg-[#f4faf2] border border-[#bce09f] text-[#055c34] px-3 py-1 rounded-md font-bold">120 Seconds Max</span>
+                    </h4>
+
+                    <div class="space-y-4">
+                        <div class="flex gap-4">
+                          <div class="h-8 w-8 rounded-full bg-[#f4faf2] border border-[#bce09f] text-[#055c34] flex items-center justify-center font-bold text-xs flex-shrink-0">
+                            1
+                          </div>
+                          <div>
+                            <h5 class="font-bold text-[#063b21] text-sm">Introduction and Region (0s to 30s)</h5>
+                            <p class="text-xs text-[#527d66] mt-0.5">Introduce your name, team context, and your targeted region.</p>
+                          </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                          <div class="h-8 w-8 rounded-full bg-[#f4faf2] border border-[#bce09f] text-[#055c34] flex items-center justify-center font-bold text-xs flex-shrink-0">
+                            2
+                          </div>
+                          <div>
+                            <h5 class="font-bold text-[#063b21] text-sm">Challenge and Solution (30s to 90s)</h5>
+                            <p class="text-xs text-[#527d66] mt-0.5">Detail what community equipment or micro-enterprise setup you will establish.</p>
+                          </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                          <div class="h-8 w-8 rounded-full bg-[#f4faf2] border border-[#bce09f] text-[#055c34] flex items-center justify-center font-bold text-xs flex-shrink-0">
+                            3
+                          </div>
+                          <div>
+                            <h5 class="font-bold text-[#063b21] text-sm">Grant Deployment (90s to 120s)</h5>
+                            <p class="text-xs text-[#527d66] mt-0.5">Explain how your selected tier amount (e.g. $1,000) launches this initial pilot.</p>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-[#edf3e6] pt-4 flex justify-between items-center">
+                        <span class="text-xs text-[#527d66]">No complex application form required.</span>
+                        <button 
+                            onclick="openApplyModal()"
+                            class="text-[#055c34] font-extrabold text-xs hover:underline"
+                        >
+                            View Submission Phases &rarr;
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: SUGGESTIONS -->
+        <div id="tab-suggestions" class="space-y-8 hidden animate-fadeIn">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="inline-block text-[10px] uppercase tracking-widest font-extrabold px-2.5 py-1 rounded-full bg-[#f4faf2] text-[#055c34] border border-[#bce09f]">
+                    Grassroots Catalyst
+                </span>
+                <h2 class="text-3xl font-extrabold text-[#063b21]">Venture Suggestion Engine</h2>
+                <p class="text-[#325240] text-sm">
+                    Explore highly feasible, lightweight concepts tailored specifically for broad, regional climates. We assess practical execution instead of narrow country-specific criteria.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 md:p-8 rounded-3xl border border-[#dbe6cf] shadow-sm space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Region dropdown -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-[#063b21] uppercase tracking-wider block">
+                            1. Select Broad Geographic Region
+                        </label>
+                        <select
+                            id="region-select"
+                            class="w-full bg-[#fafdf8] border border-[#dbe6cf] rounded-xl px-4 py-3 text-sm text-[#0c2e20] font-semibold focus:outline-none focus:ring-2 focus:ring-[#10b981]/40"
+                        >
+                            <!-- Programmatically populated in Javascript -->
+                        </select>
+                    </div>
+
+                    <!-- Sector dropdown -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-[#063b21] uppercase tracking-wider block">
+                            2. Select Primary Field
+                        </label>
+                        <select
+                            id="industry-select"
+                            class="w-full bg-[#fafdf8] border border-[#dbe6cf] rounded-xl px-4 py-3 text-sm text-[#0c2e20] font-semibold focus:outline-none focus:ring-2 focus:ring-[#10b981]/40"
+                        >
+                            <!-- Programmatically populated in Javascript -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex justify-center pt-4">
+                    <button
+                        onclick="fetchSuggestions()"
+                        id="btn-generate"
+                        class="w-full md:w-auto px-10 py-4 rounded-xl bg-[#055c34] hover:bg-[#033b21] text-white font-bold transition-all flex items-center justify-center gap-2 shadow-md shadow-[#055c34]/10"
+                    >
+                        <span>View Suggestion Blueprints</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Suggestion Results Output -->
+            <div id="suggestions-box" class="space-y-6 hidden">
+                <h3 class="text-xl font-bold text-[#063b21] flex items-center gap-2">
+                    <span class="w-1.5 h-5 bg-[#055c34] rounded-full"></span>
+                    Feasibility Recommendations
+                </h3>
+
+                <div id="suggestions-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Loaded dynamically via script -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: TIERS -->
+        <div id="tab-tiers" class="space-y-12 hidden animate-fadeIn">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <span class="inline-block text-[10px] uppercase tracking-widest font-extrabold px-2.5 py-1 rounded-full bg-[#f4faf2] text-[#055c34] border border-[#bce09f]">
+                    $27,000 Global Budget Allocation
+                </span>
+                <h2 class="text-3xl font-extrabold text-[#063b21]">45 Micro-Grants Ecosystem</h2>
+                <p class="text-[#325240] text-sm font-medium">
+                    To maximize the geographic reach of our resilience program, we divide our total capital into three distinct tiers based on the scope of different initiatives.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Tier 1 -->
+                <div class="p-8 rounded-3xl border-2 border-[#10b981] bg-white relative space-y-6 shadow-md shadow-[#10b981]/5">
+                    <div class="absolute top-0 right-6 -translate-y-1/2 px-3 py-1 bg-[#10b981] text-white text-[10px] font-bold tracking-widest uppercase rounded-full">
+                        Primary Scale
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-1.5 text-xs text-[#055c34] font-bold uppercase tracking-wider">
+                            <span>Tier 1</span>
+                            <span>/</span>
+                            <span>15 Awards</span>
+                        </div>
+                        <h3 class="text-5xl font-black text-[#063b21]">$1,000</h3>
+                        <p class="text-xs text-[#527d66] font-medium">To launch structured micro-cooperatives or acquire specialized workshop machinery.</p>
+                    </div>
+
+                    <div class="h-[1px] bg-[#edf3e6]"></div>
+
+                    <div class="space-y-3 text-xs text-[#325240]">
+                        <p class="flex items-center gap-2">
+                            <span class="h-1.5 w-1.5 rounded-full bg-[#10b981]"></span>
+                            Ideal for localized solar crop units.
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <span class="h-1.5 w-1.5 rounded-full bg-[#10b981]"></span>
+                            Requires simple, low-power setup plan.
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <span class="h-1.5 w-1.5 rounded-full bg-[#10b981]"></span>
+                            Aimed at group or community benefits.
+                        </p>
+                    </div>
+
+                    <button
+                        onclick="openApplyModal()"
+                        class="w-full py-3 bg-[#055c34] hover:bg-[#033b21] rounded-xl text-white text-xs font-bold transition-all"
+                    >
+                        View Tier Eligibility
+                    </button>
+                </div>
+
+                <!-- Tier 2 -->
+                <div class="p-8 rounded-3xl border border-[#dbe6cf] bg-white space-y-6 shadow-sm">
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-1.5 text-xs text-[#055c34] font-bold uppercase tracking-wider">
+                            <span>Tier 2</span>
+                            <span>/</span>
+                            <span>15 Awards</span>
+                        </div>
+                        <h3 class="text-5xl font-black text-[#063b21]">$500</h3>
+                        <p class="text-xs text-[#527d66] font-medium">For mid-scale setup tools, essential materials, and raw distribution setups.</p>
+                    </div>
+
+                    <div class="h-[1px] bg-[#edf3e6]"></div>
+
+                    <div class="space-y-3 text-xs text-[#325240]">
+                        <p class="flex items-center gap-2">
+                          <span class="h-1.5 w-1.5 rounded-full bg-[#10b981]"></span>
+                          Excellent for food dehydration tables.
+                        </p>
+                        <p class="flex items-center gap-2">
+                          <span class="h-1.5 w-1.5 rounded-full bg-[#10b981]"></span>
+                          Supports community hand-tool sharing.
+                        </p>
+                        <p class="flex items-center gap-2">
+                          <span class="h-1.5 w-1.5 rounded-full bg-[#10b981]"></span>
+                          Supports local workshop repairs.
+                        </p>
+                    </div>
+
+                    <button
+                        onclick="openApplyModal()"
+                        class="w-full py-3 bg-[#f4faf2] text-[#055c34] hover:bg-[#055c34] hover:text-white rounded-xl text-xs font-bold transition-all border border-[#bce09f]"
+                    >
+                        View Tier Eligibility
+                    </button>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="p-8 rounded-3xl border border-[#dbe6cf] bg-white space-y-6 shadow-sm">
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-1.5 text-xs text-[#055c34] font-bold uppercase tracking-wider">
+                            <span>Tier 3</span>
+                            <span>/</span>
+                            <span>15 Awards</span>
+                        </div>
+                        <h3 class="text-5xl font-black text-[#063b21]">$300</h3>
+                        <p class="text-xs text-[#527d66] font-medium">To trial immediate prototypes, micro educational kits, or localized crafts guides.</p>
+                    </div>
+
+                    <div class="h-[1px] bg-[#edf3e6]"></div>
+
+                    <div class="space-y-3 text-xs text-[#325240]">
+                        <p class="flex items-center gap-2">
+                          <span class="h-1.5 w-1.5 rounded-full bg-[#10b981]"></span>
+                          Aimed at student or individual pilots.
+                        </p>
+                        <p class="flex items-center gap-2">
+                          <span class="h-1.5 w-1.5 rounded-full bg-[#10b981]"></span>
+                          Covers basic offline storage media.
+                        </p>
+                        <p class="flex items-center gap-2">
+                          <span class="h-1.5 w-1.5 rounded-full bg-[#10b981]"></span>
+                          Designed for rapid startup feedback.
+                        </p>
+                    </div>
+
+                    <button
+                        onclick="openApplyModal()"
+                        class="w-full py-3 bg-[#f4faf2] text-[#055c34] hover:bg-[#055c34] hover:text-white rounded-xl text-xs font-bold transition-all border border-[#bce09f]"
+                    >
+                        View Tier Eligibility
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Application Status Modal Overlay -->
+    <div id="apply-modal" class="fixed inset-0 z-50 bg-[#0c2e20]/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white max-w-lg w-full rounded-3xl border border-[#dbe6cf] p-8 space-y-6 shadow-2xl relative animate-scaleUp">
+            
+            <!-- Close Button -->
+            <button
+                onclick="closeApplyModal()"
+                class="absolute top-4 right-4 h-8 w-8 rounded-full bg-[#edf5e1] hover:bg-[#dbe6cf] text-[#063b21] flex items-center justify-center font-bold text-sm transition-all"
+            >
+                &times;
+            </button>
+
+            <div class="space-y-2 text-center">
+                <span class="inline-block text-[10px] font-extrabold px-3 py-1 bg-[#fff5f5] text-[#c53030] rounded-full uppercase tracking-wider">
+                    System Announcement
+                </span>
+                <h3 class="text-2xl font-extrabold text-[#063b21]">Applications Aren't Open Yet</h3>
+                <p class="text-xs text-[#527d66] max-w-sm mx-auto">
+                    Our selection committee is currently setting up the regional review rubrics. Please note the official application timelines below:
+                </p>
+            </div>
+
+            <!-- Phases Information Box -->
+            <div class="space-y-3">
+                <div class="p-4 rounded-2xl bg-[#f8fdf6] border border-[#dbe6cf] flex justify-between items-center">
+                    <div>
+                        <h4 class="text-sm font-extrabold text-[#063b21]">Phase 1 Evaluation</h4>
+                        <p class="text-[11px] text-[#527d66]">Submission window</p>
+                    </div>
+                    <span class="text-xs font-bold bg-[#055c34] text-white px-3 py-1 rounded-lg">
+                        November to January
+                    </span>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-[#f8fdf6] border border-[#dbe6cf] flex justify-between items-center">
+                    <div>
+                        <h4 class="text-sm font-extrabold text-[#063b21]">Phase 2 Evaluation</h4>
+                        <p class="text-[11px] text-[#527d66]">Final pilot selection</p>
+                    </div>
+                    <span class="text-xs font-bold bg-[#055c34] text-white px-3 py-1 rounded-lg">
+                        March to May
+                    </span>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-900 leading-relaxed flex items-start gap-2.5">
+                <svg class="w-4 h-4 flex-shrink-0 text-amber-700 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <span><strong>Acknowledge:</strong> There is no complex application form. When the submission period starts, you will simply record and upload your 2-minute pitch file directly through our live audio-video workspace.</span>
+            </div>
+
+            <button
+                onclick="closeApplyModal()"
+                class="w-full py-3 bg-[#055c34] hover:bg-[#033b21] rounded-xl text-white text-xs font-bold tracking-wider uppercase transition-all"
+            >
+                Acknowledge and Close
+            </button>
+        </div>
+    </div>
+
+    <!-- White Elegant Footer -->
+    <footer class="border-t border-[#edf3e6] bg-white mt-20 px-6 py-12">
+        <div class="max-w-6xl w-full mx-auto space-y-12">
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-[#edf3e6]">
+                
+                <!-- Logo Block -->
+                <div class="md:col-span-4 space-y-4">
+                    <div class="flex items-center gap-2">
+                        <div class="h-6 w-6 bg-[#055c34] rounded-lg flex items-center justify-center font-black text-white text-xs">V2V</div>
+                        <h3 class="font-extrabold text-[#063b21] text-sm">Vision2Venture</h3>
+                    </div>
+                    <p class="text-xs text-[#527d66] leading-relaxed font-medium">
+                        An international seed deployment program modeled under California state resilience frameworks, bringing critical pilot funding to underdeveloped areas globally.
+                    </p>
+                </div>
+
+                <!-- Scope Quick-Links -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-xs font-extrabold text-[#063b21] uppercase tracking-wider">Scope and Horizons</h4>
+                    <ul class="space-y-2 text-xs text-[#527d66] font-semibold">
+                        <li>South Asia</li>
+                        <li>Southeast Asia</li>
+                        <li>Latin America and Caribbean</li>
+                        <li>Eastern Europe and Western Africa</li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Subscription Form -->
+                <div class="md:col-span-5 space-y-4 font-medium">
+                    <h4 class="text-xs font-extrabold text-[#063b21] uppercase tracking-wider">Subscribe to Daily Grassroots News</h4>
+                    <p class="text-xs text-[#527d66]">
+                        Provide your email below to receive daily impact news, grassroots project guides, and live program notifications.
+                    </p>
+
+                    <!-- AJAX Formspree submission element -->
+                    <form id="subscribe-form" class="flex flex-col sm:flex-row gap-2">
+                        <input
+                            type="email"
+                            name="email"
+                            required
+                            placeholder="Your email address"
+                            class="flex-1 bg-[#fafdf8] border border-[#dbe6cf] rounded-xl px-4 py-2.5 text-xs text-[#0c2e20] font-semibold focus:outline-none focus:ring-2 focus:ring-[#10b981]/40"
+                        />
+                        <button
+                            type="submit"
+                            class="px-5 py-2.5 bg-[#055c34] hover:bg-[#033b21] text-white text-xs font-bold rounded-xl transition-all"
+                        >
+                            Subscribe
+                        </button>
+                    </form>
+                    <div id="subscribe-status" class="text-xs font-bold hidden"></div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Legal Bar -->
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-[#527d66] font-semibold tracking-wide">
+                <p>&copy; 2026 Vision2Venture Program. Supported by California State Resilience Alliances.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-[#055c34]">Terms of Use</a>
+                    <a href="#" class="hover:text-[#055c34]">Privacy Policy</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Frontend Interactive Javascript Logic -->
+    <script>
+        // Configurable Formspree endpoint (Replace YOUR_FORMSPREE_ID with your Formspree form ID)
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwvdybdl";
+
+        // Broad geographic regions
+        const REGIONS = [
+            "South Asia",
+            "Southeast Asia",
+            "Latin America",
+            "Caribbean Islands",
+            "Eastern Europe",
+            "Eastern Africa",
+            "Southern Africa",
+            "Western Africa"
+        ];
+
+        // Primary Industries
+        const INDUSTRIES = [
+            "Agriculture and Food Systems",
+            "Water Access and Sanitation",
+            "Clean Energy and Climate Tools",
+            "Offline Educational Kits",
+            "Micro-Commerce and Crafts",
+            "Community Waste Systems"
+        ];
+
+        // Client-side structured mock data matching Python suggestion definitions (Fully localized, no countries)
+        const REGIONAL_SUGGESTIONS = {
+            "South Asia": [
+                {
+                    title: "Solar-Powered Silk and Yarn Spinners",
+                    problem: "Traditional hand-spinning is highly labor-intensive, keeping rural weavers in a cycle of low income.",
+                    solution: "Equipping local textile family collectives with low-draw, solar-assisted spinning attachments constructed locally.",
+                    impact: "Triples daily yarn yield, allowing immediate micro-enterprise growth in rural craft hubs."
+                },
+                {
+                    title: "Rainwater Harvesting Filtration Kits",
+                    problem: "Heavy seasonal monsoon rains go uncollected, followed immediately by severe clean water scarcity in rural villages.",
+                    solution: "Deploying basic, low-maintenance gravity-fed sand and charcoal filtration setups for home-level collection tanks.",
+                    impact: "Supplies clean drinking water to multi-family clusters using simple local hardware."
+                }
+            ],
+            "Southeast Asia": [
+                {
+                    title: "Floating Hydro-Micro Generators",
+                    problem: "Remote river communities lack direct connection to the central electricity grid.",
+                    solution: "Assembling portable, floating water-wheel generators using recycled plastic drums and simple alternators.",
+                    impact: "Provides reliable low-voltage power for local household lighting and charging communication devices."
+                }
+            ],
+            "Latin America": [
+                {
+                    title: "Community Coffee Dry-Beds",
+                    problem: "Smallholder coffee growers lose high value by selling wet, unprocessed beans to large middle-distributors.",
+                    solution: "Erecting elevated, sun-shielded drying beds built from local timber and high-durability mesh.",
+                    impact: "Allows farmers to dry crop yields safely, commanding a 45 percent higher price in regional markets."
+                }
+            ],
+            "Caribbean Islands": [
+                {
+                    title: "Organic Seaweed Fertilizer Processing",
+                    problem: "Heavy seaweed accumulations on coastlines disrupt local fishing, while conventional fertilizers remain expensive.",
+                    solution: "Setting up small-scale composting and organic liquid extraction units to process harvested seaweed.",
+                    impact: "Provides coastal farmers with high-nutrient, low-cost fertilizer while restoring local beaches."
+                }
+            ],
+            "Eastern Europe": [
+                {
+                    title: "Micro-Greenhouse Thermal Foils",
+                    problem: "Extremely short growing seasons combined with high energy costs prevent off-season vegetable farming.",
+                    solution: "Distributing specialized, energy-trapping multi-layer insulation sheets for simple wooden tunnel beds.",
+                    impact: "Extends the cultivation calendar, allowing families to grow fresh cold-hardy greens through winter."
+                }
+            ],
+            "Eastern Africa": [
+                {
+                    title: "Gravity Drip Irrigation Sets",
+                    problem: "Irregular rainfall patterns in dry agricultural corridors cause sudden crop failure.",
+                    solution: "Distributing low-cost, gravity-assisted drip lines connected to simple elevated community barrels.",
+                    impact: "Enables dry-season vegetable farming, stabilizing food supplies and micro-income."
+                }
+            ],
+            "Southern Africa": [
+                {
+                    title: "Offline Mobile Learning Hubs",
+                    problem: "High internet data fees and cellular blackouts restrict rural school students from digital educational materials.",
+                    solution: "Loading comprehensive visual study courses and local language audiobooks onto robust microSD cards for older mobile phones.",
+                    impact: "Enables village student networks to study core academic subjects completely offline without connection charges."
+                }
+            ],
+            "Western Africa": [
+                {
+                    title: "Cassava Grating Stations",
+                    problem: "Processing raw cassava into staple food requires exhausting manual labor, limiting local trade volume.",
+                    solution: "Building simple, pedal-powered mechanical cassava grating equipment using bicycle frames and locally fabricated metal drums.",
+                    impact: "Reduces processing time by 80 percent, empowering women's self-help groups to sell larger batches."
+                }
+            ]
+        };
+
+        // Initialize selectors on window load
+        window.onload = function() {
+            const regionSelect = document.getElementById('region-select');
+            const industrySelect = document.getElementById('industry-select');
+
+            // Populate Regions dropdown
+            REGIONS.forEach(region => {
+                const opt = document.createElement('option');
+                opt.value = region;
+                opt.innerText = region;
+                regionSelect.appendChild(opt);
+            });
+
+            // Populate Industries dropdown
+            INDUSTRIES.forEach(industry => {
+                const opt = document.createElement('option');
+                opt.value = industry;
+                opt.innerText = industry;
+                industrySelect.appendChild(opt);
+            });
+        };
+
+        // Tab Switch Management
+        function switchTab(tabId) {
+            // Hide all tab screens
+            document.getElementById('tab-home').classList.add('hidden');
+            document.getElementById('tab-suggestions').classList.add('hidden');
+            document.getElementById('tab-tiers').classList.add('hidden');
+
+            // Show active tab screen
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            // Reset navigation button styling
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.className = "tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wide transition-all text-[#25523b] hover:bg-white/60 hover:text-[#063b21]";
+            });
+
+            // Set active navigation button styling
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.className = "tab-btn px-4 py-2 rounded-lg text-xs font-bold tracking-wide transition-all bg-[#055c34] text-white shadow-sm";
+            }
+        }
+
+        // Apply Status Modal Control
+        function openApplyModal() {
+            const modal = document.getElementById('apply-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeApplyModal() {
+            const modal = document.getElementById('apply-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        // Suggestion Fetch Client-Side Handler
+        function fetchSuggestions() {
+            const regionSelect = document.getElementById('region-select').value;
+            const industrySelect = document.getElementById('industry-select').value;
+            const suggestionsBox = document.getElementById('suggestions-box');
+            const grid = document.getElementById('suggestions-grid');
+            const btn = document.getElementById('btn-generate');
+
+            btn.disabled = true;
+            btn.innerHTML = `<span>Loading blueprints...</span>`;
+
+            // Simulating network delay to feel dynamic and alive
+            setTimeout(() => {
+                // Clear previous entries
+                grid.innerHTML = "";
+
+                // Fetch suggestions matching Python logic
+                let ideas = REGIONAL_SUGGESTIONS[regionSelect] || [];
+                let output = [];
+
+                ideas.forEach(idea => {
+                    output.push({
+                        title: `${industrySelect} / ${idea.title}`,
+                        problem: idea.problem,
+                        solution: idea.solution,
+                        impact: idea.impact
+                    });
+                });
+
+                // Render dynamic fallback suggestion card if no direct match is available
+                if (output.length === 0) {
+                    output.push({
+                        title: `Smart ${industrySelect} Cooperative`,
+                        problem: `Infrastructure constraints limit production efficiency within this sector of the ${regionSelect} area.`,
+                        solution: "Establishing a centralized home-workshop tool library purchased directly with the $1,000 grant.",
+                        impact: "Doubles regional throughput, preserving critical local margins."
+                    });
+                }
+
+                // Append matching blueprints
+                output.slice(0, 2).forEach((item, index) => {
+                    const card = document.createElement('div');
+                    card.className = "p-6 rounded-2xl border border-[#dbe6cf] bg-white space-y-4 hover:border-[#10b981]/50 transition-all shadow-sm animate-fadeIn";
+                    card.innerHTML = `
+                        <span class="inline-block text-[10px] uppercase font-extrabold px-2 py-1 rounded bg-[#f4faf2] text-[#055c34] border border-[#bce09f]">
+                            Scenario ${index + 1}
+                        </span>
+                        <h4 class="text-lg font-extrabold text-[#063b21]">${item.title}</h4>
+                        <div class="space-y-3 text-xs text-[#325240]">
+                            <p>
+                                <strong class="text-[#063b21] block">Target Challenge:</strong>
+                                ${item.problem}
+                            </p>
+                            <p>
+                                <strong class="text-[#063b21] block">Grassroots Setup Strategy:</strong>
+                                ${item.solution}
+                            </p>
+                            <p>
+                                <strong class="text-[#063b21] block">Estimated Regional Impact:</strong>
+                                ${item.impact}
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-[#edf3e6]">
+                            <button
+                                onclick="openApplyModal()"
+                                class="w-full py-2.5 bg-[#f4faf2] hover:bg-[#055c34] hover:text-white rounded-lg text-xs font-bold text-[#055c34] border border-[#bce09f] transition-all"
+                            >
+                                Express Pitch Interest
+                            </button>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+
+                suggestionsBox.classList.remove('hidden');
+                btn.disabled = false;
+                btn.innerHTML = `<span>View Suggestion Blueprints</span>`;
+            }, 600);
+        }
+
+        // Formspree Newsletter AJAX Handler
+        const form = document.getElementById('subscribe-form');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const statusDiv = document.getElementById('subscribe-status');
+            const emailInput = form.querySelector('input[type="email"]');
+            
+            statusDiv.className = "text-xs font-bold mt-2 text-[#055c34]";
+            statusDiv.textContent = "Registering subscription...";
+            statusDiv.classList.remove('hidden');
+
+            const formspreeUrl = FORMSPREE_ENDPOINT;
+
+            // Guard against the default placeholder value
+            if (formspreeUrl.includes("YOUR_FORMSPREE_ID")) {
+                setTimeout(() => {
+                    statusDiv.className = "text-xs font-bold mt-2 text-[#055c34]";
+                    statusDiv.textContent = "Subscription Successful! (Simulation Mode: Please configure your live Formspree ID at the top of index.html)";
+                    emailInput.value = "";
+                }, 800);
+                return;
+            }
+
+            try {
+                const response = await fetch(formspreeUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ email: emailInput.value })
+                });
+
+                if (response.ok) {
+                    statusDiv.className = "text-xs font-bold mt-2 text-[#055c34]";
+                    statusDiv.textContent = "Subscription verified! You are now set up for daily updates.";
+                    emailInput.value = "";
+                } else {
+                    statusDiv.className = "text-xs font-bold mt-2 text-rose-600";
+                    statusDiv.textContent = "System configuration error. Please confirm your Formspree endpoint.";
+                }
+            } catch (error) {
+                statusDiv.className = "text-xs font-bold mt-2 text-rose-600";
+                statusDiv.textContent = "Network error. Please try again shortly.";
+            }
+        });
+    </script>
+</body>
+</html>
